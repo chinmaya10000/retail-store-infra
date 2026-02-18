@@ -18,7 +18,8 @@ module "iam_policy" {
     Statement = [
         {
             Effect = "Allow",
-            Actions = ["ecr:GetAuthorizationToken"]
+            Action = ["ecr:GetAuthorizationToken"]
+            Resource = "*"
         },
         {
             Effect = "Allow",
@@ -60,7 +61,7 @@ module "iam_role" {
         {
           test     = "StringLike"
           variable = "token.actions.githubusercontent.com:sub"
-          values   = local.github_subs
+          values   = [local.github_subs]
         }
       ]
     }
