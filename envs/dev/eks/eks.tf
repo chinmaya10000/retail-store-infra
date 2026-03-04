@@ -22,8 +22,8 @@
   # Optional: Adds the current caller identity as an administrator via cluster access entry
   enable_cluster_creator_admin_permissions = true
 
-  vpc_id                   = module.vpc.vpc_id
-  subnet_ids               = module.vpc.private_subnets
+  vpc_id                   = data.terraform_remote_state.vpc.outputs.vpc_id
+  subnet_ids               = data.terraform_remote_state.vpc.outputs.private_subet_ids
 #   control_plane_subnet_ids = ["subnet-xyzde987", "subnet-slkjf456", "subnet-qeiru789"]
 
   # EKS Managed Node Group(s)
