@@ -26,3 +26,15 @@ variable "terraform_s3_bucket" {
   type        = string
   description = "An S3 bucket to store the Terraform state."
 }
+
+# variable "gitops_url" {
+#   description = "GitHub Repo URL"
+# }
+
+# variable "gitops_username" {
+#   description = "GitHub Username"
+# }
+
+# variable "gitops_password" {
+#   description = "GitHub PAT"
+# }
