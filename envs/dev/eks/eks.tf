@@ -29,7 +29,6 @@ module "eks" {
   # EKS Managed Node Group(s)
   eks_managed_node_groups = {
     initial = {
-      # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
       instance_types = var.general_nodes_ec2_types
 
       min_size     = 2
@@ -47,12 +46,6 @@ module "eks_blueprints_addons" {
   cluster_endpoint  = module.eks.cluster_endpoint
   cluster_version   = module.eks.cluster_version
   oidc_provider_arn = module.eks.oidc_provider_arn
-
-  eks_addons = {
-    aws-ebs-csi-driver = {
-      most_recent = true
-    }
-  }
 
   # enable_cluster_proportional_autoscaler = true
   # enable_karpenter                       = true
