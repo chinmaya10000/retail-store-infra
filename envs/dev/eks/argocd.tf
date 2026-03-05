@@ -1,15 +1,15 @@
-# resource "helm_release" "argocd" {
-#   name = "argocd"
-#   repository = "https://argoproj.github.io/argo-helm"
-#   chart = "argo-cd"
-#   namespace = "argocd"
-#   create_namespace = true
-#   version = "9.4.7"
+resource "helm_release" "argocd" {
+  name = "argocd"
+  repository = "https://argoproj.github.io/argo-helm"
+  chart = "argo-cd"
+  namespace = "argocd"
+  create_namespace = true
+  version = "9.4.7"
 
-#   values = [file("values/argocd.yaml")]
+  values = [file("values/argocd.yaml")]
 
-#   depends_on = [ module.eks ]
-# }
+  depends_on = [ module.eks ]
+}
 
 # resource "kubernetes_secret" "argocd_gitops_repo" {
 #   depends_on = [
