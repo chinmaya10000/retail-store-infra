@@ -44,32 +44,20 @@ resource "helm_release" "aws_lbc" {
   namespace = "kube-system"
   version = "1.14.0"
 
-  set = [
-    {
-      name  = "clusterName"
-      value = aws_eks_cluster.eks.name
-      }, {
-      name  = "serviceAccount.name"
-      value = "aws-load-balancer-controller"
-      }, {
-      name  = "replicaCount"
-      value = 1
-      }, {
-      name  = "resources.requests.cpu"
-      value = "100m"
-      }, {
-      name  = "resources.requests.memory"
-      value = "128Mi"
-      }, {
-      name  = "resources.limits.cpu"
-      value = "100m"
-      }, {
-      name  = "resources.limits.memory"
-      value = "128Mi"
-      }, {
-      name  = "vpcId"
-      value = data.terraform_remote_state.vpc.outputs.vpc_id
-  }]
+  values = [
+    yamlencode({
+      clusterName = aws_eks_cluster.eks.name
+      serviceAccount = {
+        name = "aws-load-balancer-controller"
+      }
+      replicaCount = 1
+      resources = {
+        requests = { cpu = "100m", memory = "128Mi" }
+        limits   = { cpu = "100m", memory = "128Mi" }
+      }
+      vpcId = data.terraform_remote_state.vpc.outputs.vpc_id
+    })
+  ]
 
   depends_on = [ aws_eks_node_group.general ]
 }
