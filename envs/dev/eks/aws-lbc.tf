@@ -46,38 +46,30 @@ resource "helm_release" "aws_lbc" {
 
   set = [
     {
-        name = "clusterName"
-        value = module.eks.cluster_name
-    },
-    {
-        name = "serviceAccount.name"
-        value = "aws-load-balancer-controller"
-    },
-    {
-        name = "replicaCount"
-        value = "1"
-    },
-    {
-        name = "resources.requests.cpu"
-        value = "100m"
-    },
-    {
-        name = "resources.requests.memory"
-        value = "128Mi"
-    },
-    {
-        name = "resources.limits.cpu"
-        value = "100m"
-    },
-    {
-        name = "resources.limits.memory"
-        value = "128Mi"
-    },
-    {
-        name = "vpcId"
-        value = data.terraform_remote_state.vpc.outputs.vpc_id
-    }
-  ]
+      name  = "clusterName"
+      value = module.eks.cluster_name
+      }, {
+      name  = "serviceAccount.name"
+      value = "aws-load-balancer-controller"
+      }, {
+      name  = "replicaCount"
+      value = 1
+      }, {
+      name  = "resources.requests.cpu"
+      value = "100m"
+      }, {
+      name  = "resources.requests.memory"
+      value = "128Mi"
+      }, {
+      name  = "resources.limits.cpu"
+      value = "100m"
+      }, {
+      name  = "resources.limits.memory"
+      value = "128Mi"
+      }, {
+      name  = "vpcId"
+      value = data.terraform_remote_state.vpc.outputs.vpc_id
+  }]
 
   depends_on = [ module.eks ]
 }
