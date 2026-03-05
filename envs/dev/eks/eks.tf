@@ -39,5 +39,5 @@ resource "aws_eks_cluster" "eks" {
     bootstrap_cluster_creator_admin_permissions = true
   }
 
-  depends_on = [aws_iam_role_policy_attachment.eks]
+  depends_on = [aws_iam_role_policy_attachment.cluster_AmazonEKSClusterPolicy]
 }

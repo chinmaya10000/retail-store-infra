@@ -71,5 +71,5 @@ resource "helm_release" "aws_lbc" {
       value = data.terraform_remote_state.vpc.outputs.vpc_id
   }]
 
-  depends_on = [ module.eks ]
+  depends_on = [ aws_eks_node_group.general ]
 }
