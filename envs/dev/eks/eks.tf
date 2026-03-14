@@ -15,10 +15,10 @@ module "eks" {
       before_compute = true
     }
 
-    aws-ebs-csi-driver = {
-      service_account_role_arn = module.ebs_csi_irsa_role.iam_role_arn
-      most_recent              = true   # always pulls latest stable version
-    }
+    # aws-ebs-csi-driver = {
+    #   service_account_role_arn = module.ebs_csi_irsa_role.iam_role_arn
+    #   most_recent              = true   # always pulls latest stable version
+    # }
   }
 
   # Optional
