@@ -8,7 +8,7 @@ resource "helm_release" "argocd" {
 
   values = [file("values/argocd.yaml")]
 
-  depends_on = [ module.eks ]
+  depends_on = [ module.eks, helm_release.aws_lbc ]
 }
 
 # resource "kubernetes_secret" "argocd_gitops_repo" {
