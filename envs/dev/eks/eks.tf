@@ -23,7 +23,7 @@ module "eks" {
   enable_cluster_creator_admin_permissions = true
 
   vpc_id                   = data.terraform_remote_state.vpc.outputs.vpc_id
-  subnet_ids               = data.terraform_remote_state.vpc.outputs.private_subet_ids
+  subnet_ids               = data.terraform_remote_state.vpc.outputs.private_subnet_ids
   
 
   # EKS Managed Node Group(s)
@@ -46,12 +46,6 @@ module "eks_blueprints_addons" {
   cluster_endpoint  = module.eks.cluster_endpoint
   cluster_version   = module.eks.cluster_version
   oidc_provider_arn = module.eks.oidc_provider_arn
-
-  eks_addons = {
-    aws-ebs-csi-driver = {
-      most_recent = true
-    }
-  }
 
   # enable_cluster_proportional_autoscaler = true
   # enable_karpenter                       = true
